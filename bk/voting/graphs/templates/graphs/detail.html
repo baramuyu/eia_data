@@ -1,0 +1,11 @@
+<h1>{{ category.name }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'graphs:vote' category.id %}" method="post">
+{% csrf_token %}
+{% for graph in category.graph_set.all %}
+<input type="radio" name="graph" id="graph{{ forloop.counter }}" value="{{ graph.graph_id }}" />
+<label for="graph{{ forloop.counter }}">{{ graph.seriesid }}  -- {{ graph.votes }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
