@@ -38,4 +38,4 @@ class MetaCategory(models.Model):
     name = models.CharField(max_length=255)
 
     def __unicode__(self):
-        return str(self.category_id)
+        return self.name

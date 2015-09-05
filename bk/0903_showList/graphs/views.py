@@ -8,7 +8,7 @@ from .models import Category, Graph, Scategory
 
 class IndexView(generic.ListView):
     template_name = 'graphs/index.html'
-    context_object_name = 'latest_category_list'
+    context_object_name = 'category_list'
 
     def get_queryset(self):
         #Return the categories."""
@@ -20,8 +20,8 @@ class DetailView(generic.DetailView):
 
 '''
 def index(request):
-    latest_category_list = Category.objects.order_by('name')
-    context = {'latest_category_list': latest_category_list}
+    category_list = Category.objects.order_by('name')
+    context = {'category_list': category_list}
     return render(request, 'graphs/index.html', context)
 
 def detail(request, category_id):

@@ -8,26 +8,97 @@
 
 {% block content %}
 <div class="container">
-{% if latest_category_list %}
-    <ul>
-    {% for Scategory in latest_category_list %}
-        <li>
-            {{ Scategory.category1.name }} /
-            {{ Scategory.category2.name }} /
-            {{ Scategory.category3.name }} /
-            <a href="{% url 'graphs:detail' Scategory.series_id %}">{{ Scategory.series_id }}</a>
-        </li>
+<!--
+     <div class="btn-group-vertical" role="group" aria-label="name">
+      <a href="#" class="btn btn-info" role="button">Link Button</a>
+      <button type="button" class="btn btn-default">1</button>
+      <button type="button" class="btn btn-default">2</button>
+    </div>   -->  
+    
+{% if category_list %}  
+    <div class="btn-group-vertical" role="group1" data-toggle="buttons">
+    {% regroup category_list by category1__name as cat_list %}
+    {% for cat1 in cat_list %}
+        {% if cat1.grouper %}
+        <button type="button" class="dummy cat_id{{cat1.list.0.category1}} btn btn-default" name="t" value="{{cat1.list.0.category1}}" >{{ cat1.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
     {% endfor %}
+    </div>
 
-    </ul>
-<!-- 
-    <ul>
-    {% for Scategory in latest_category_list %}
-        <li><a href="{% url 'graphs:detail' Scategory.series_id %}">{{ Scategory.series_id }}</a></li>
+    <div class="btn-group-vertical" role="group2" >
+    {% regroup category_list by category2__name as cat_list %}
+    {% for cat2 in cat_list %}
+        {% if cat2.grouper %}
+        <button type="button" class="cat_id{{cat2.list.0.category1}} cat_id{{cat2.list.0.category2}} btn btn-default hidden" name="tt" value="{{cat2.list.0.category2}}">{{ cat2.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
     {% endfor %}
-    </ul> -->
+    </div>
+
+    <div class="btn-group-vertical" role="group3" >
+    {% regroup category_list by category3__name as cat_list %}
+    {% for cat3 in cat_list %}
+        {% if cat3.grouper %}
+        <button type="button" class="cat_id{{cat3.list.0.category2}} cat_id{{cat3.list.0.category3}} btn btn-default hidden" name="ttt" value="{{cat3.list.0.category3}}" >{{ cat3.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group4" >
+    {% regroup category_list by category4__name as cat_list %}
+    {% for cat4 in cat_list %}
+        {% if cat4.grouper %}
+        <button type="button" class="cat_id{{cat4.list.0.category3}} cat_id{{cat4.list.0.category4}} btn btn-default hidden" name="tttt" value="{{cat4.list.0.category4}}">{{ cat4.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group5" >
+    {% regroup category_list by category5__name as cat_list %}
+    {% for cat5 in cat_list %}
+        {% if cat5.grouper %}
+        <button type="button" class="cat_id{{cat5.list.0.category4}} cat_id{{cat5.list.0.category5}} btn btn-default hidden" name="ttttt" value="{{cat5.list.0.category5}}">{{ cat5.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+
+<!--     <div class="btn-group-vertical" role="group6" aria-label="name6">
+    {% for Scategory in category_list %}
+        {% if Scategory.series_id %}
+            <a href="{% url 'graphs:detail' Scategory.series_id %}" class="btn btn-info" role="button">{{ Scategory.series_id }}</a>
+        {% endif %}    
+    {% endfor %}
+    </div> -->
 {% else %}
     <p>No categories are available.</p>
 {% endif %}
 </div> 
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $(":button").click(function() {
+        //hidden lower heilarkey 
+        var t = $(this).attr('name');
+        $("[name^="+t+"t]").addClass("hidden") //start from "t..."
+        var myClasses = this.classList;
+        $("."+myClasses[1]).removeClass('hidden'); //show next level
+        $(this).removeClass("btn-default").addClass("btn-primary") //select
+        $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
+    });
+
+})
+</script>
 {% endblock %}

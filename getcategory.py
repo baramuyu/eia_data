@@ -7,6 +7,7 @@ import sqlite3
 api_key = '67929F4F6AEAC2F250AE188343D01BA6'
 apiurl = 'http://api.eia.gov/category/'
 root_id = 378
+connect_db = 'testdb.sqlite3'
 
 def set_param(category_id):
     data = {}
@@ -121,9 +122,10 @@ def convert_to_tuple(data):
 
 def db_insert(data, meta):
     #DB connection
-    conn = sqlite3.connect('db.sqlite3');
+    conn = sqlite3.connect(connect_db);
     c = conn.cursor();
-    c.executemany('INSERT INTO graphs_scategory (series_id, category1_id, category2_id, category3_id) Values (?,?,?,?)', data)
+    #c.executemany('INSERT INTO graphs_scategory (series_id, category1_id, category2_id, category3_id ,category4_id) Values (?,?,?,?)', data)
+    c.executemany('INSERT INTO graphs_scategory Values (?,?,?,?)', data)
     c.executemany('INSERT INTO graphs_metacategory (category_id, name) Values (?,?)', meta)
     conn.commit()
     conn.close()

@@ -8,9 +8,9 @@
 
 {% block content %}
 <div class="container">
-{% if latest_category_list %}
+{% if category_list %}
     <ul>
-    {% for category in latest_category_list %}
+    {% for category in category_list %}
         <li><a href="{% url 'graphs:detail' category.id %}">{{ category.name }}</a></li>
     {% endfor %}
     </ul>

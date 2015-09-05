@@ -3,16 +3,38 @@ from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
+from django.db.models import Min
 
 from .models import Category, Graph, Scategory
 
 class IndexView(generic.ListView):
     template_name = 'graphs/index.html'
-    context_object_name = 'latest_category_list'
+    context_object_name = 'category_list'
 
     def get_queryset(self):
         #Return the categories."""
-        return Scategory.objects.order_by('series_id')
+        #return Scategory.objects.order_by('series_id')
+        return Scategory.objects.values("category1__name",
+            "category2__name",
+            "category3__name",
+            "category4__name",
+            "category5__name",
+            "category6__name",
+            "category7__name",
+            "category8__name",
+            "category9__name",
+            "category1",
+            "category2",
+            "category3",
+            "category4",
+            "category5",
+            "category6",
+            "category7",
+            "category8",
+            "category9"
+            ).annotate(series_id=Min('series_id'))
+
+
 
 class DetailView(generic.DetailView):
     model = Scategory
@@ -20,8 +42,8 @@ class DetailView(generic.DetailView):
 
 '''
 def index(request):
-    latest_category_list = Category.objects.order_by('name')
-    context = {'latest_category_list': latest_category_list}
+    category_list = Category.objects.order_by('name')
+    context = {'category_list': category_list}
     return render(request, 'graphs/index.html', context)
 
 def detail(request, category_id):

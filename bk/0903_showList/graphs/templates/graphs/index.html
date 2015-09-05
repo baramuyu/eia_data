@@ -8,9 +8,9 @@
 
 {% block content %}
 <div class="container">
-{% if latest_category_list %}
+{% if category_list %}
     <ul>
-    {% for Scategory in latest_category_list %}
+    {% for Scategory in category_list %}
         <li>
             {{ Scategory.category1.name }} /
             {{ Scategory.category2.name }} /
@@ -22,7 +22,7 @@
     </ul>
 <!-- 
     <ul>
-    {% for Scategory in latest_category_list %}
+    {% for Scategory in category_list %}
         <li><a href="{% url 'graphs:detail' Scategory.series_id %}">{{ Scategory.series_id }}</a></li>
     {% endfor %}
     </ul> -->
