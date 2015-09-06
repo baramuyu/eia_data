@@ -3,11 +3,13 @@ import urllib
 import json
 from urllib2 import URLError, HTTPError
 import sqlite3
+import re
 
 api_key = '67929F4F6AEAC2F250AE188343D01BA6'
 apiurl = 'http://api.eia.gov/category/'
-root_id = 378
-connect_db = 'testdb.sqlite3'
+root_id = 36
+#connect_db = 'testdb.sqlite3'
+connect_db = 'db.sqlite3'
 
 def set_param(category_id):
     data = {}
@@ -37,6 +39,7 @@ def request_get(url):
     return jData
 
 def get_cat_data(category_id):
+    print 'search-- '+ str(category_id)
     data = set_param(category_id)
     full_url = create_url(data)
     jsonData = request_get(full_url)
@@ -45,17 +48,25 @@ def get_cat_data(category_id):
 def get_children(self_catid, data, level):
     global outChildren, meta
     seriesid = {};
+    print 'childseries--     '+ str(len(data['category']['childseries']))
+    print 'childcategories-- '+ str(len(data['category']['childcategories']))
+    #found last children(series_id)
     if len(data['category']['childseries']) != 0:
         for e in data['category']['childseries']:
             #get child category_id, self category_id, data level
             outSeriesid.append([e['series_id'], self_catid, level])
+            return outChildren, meta;
+    #get children categories
     if len(data['category']['childcategories']) != 0:
         for child in data['category']['childcategories']:
             #get category_id, and its name
             meta.append([child['category_id'], child['name']])
             seriesid[child['category_id']] = self_catid;
-        outChildren[level] = seriesid
-    return outChildren, meta
+        if level in outChildren:
+            outChildren[level].update(seriesid);
+        else:
+            outChildren[level] = seriesid;
+        return outChildren, meta;
 
 def get_series_id(param):
     global outChildren, meta
@@ -95,20 +106,16 @@ def output_file():
     out_file = open("Out_series_tree.txt", "w");
     text_file = open("Out_series_id.txt", "w");
     meta_file = open("Out_meta.txt", "w");
-
     for f in output:
         for g in f:
             out_file.write(str(g)+',');
         #need 10 columns
         add_col = ','*(11 - len(f));
-        out_file.write(add_col+'\n')
-
+        out_file.write(add_col+'\n');
     for e in outSeriesid:
         text_file.write("%s,%d,%d\n" % (e[0],e[1],e[2]));
-
     for d in meta:
         meta_file.write("%s,%s\n" % (d[0],d[1]));
-
     out_file.close();
     text_file.close();
     meta_file.close();
@@ -124,9 +131,41 @@ def db_insert(data, meta):
     #DB connection
     conn = sqlite3.connect(connect_db);
     c = conn.cursor();
-    #c.executemany('INSERT INTO graphs_scategory (series_id, category1_id, category2_id, category3_id ,category4_id) Values (?,?,?,?)', data)
-    c.executemany('INSERT INTO graphs_scategory Values (?,?,?,?)', data)
+    for rec in data:
+        val = "?,"*len(rec)
+        val = val[:-1] #remove last comma
+        col = "series_id, "
+        for i in range(1,len(rec)): 
+            col += " category" + str(i) + "_id,"
+        col = col[:-1] #remove last comma
+        sql = 'INSERT INTO graphs_scategory ('+col+') Values ('+val+')'
+        c.execute(sql, rec)   
+    #c.executemany('INSERT INTO graphs_scategory Values (?,?,?,?)', data)
     c.executemany('INSERT INTO graphs_metacategory (category_id, name) Values (?,?)', meta)
+    conn.commit()
+    conn.close()
+
+def update_geoset_id():
+    #DB connection
+    conn = sqlite3.connect(connect_db);
+    c = conn.cursor();
+    sql = 'SELECT series_id, geoset_id FROM graphs_scategory'
+    keys = [];
+    for row in c.execute(sql):
+        keys.append(row);
+
+    #create geoset_id
+    p = re.compile("[A-Z]*-([0-9A-Z]*\.)[A|M|Q]")
+    #original - ELEC.SALES.AL-ALL.Q
+    #getset_id- ELEC.SALES.ALL.Q
+
+    for key in keys:
+        sql=('UPDATE graphs_scategory SET geoset_id = ?'
+         + 'WHERE series_id = ?')
+        geoset_id = p.sub(r"\1A", key[0])
+        args = [geoset_id] + [key[0]]
+        c.execute(sql,args)
+
     conn.commit()
     conn.close()
 
@@ -167,4 +206,4 @@ tupMeta = convert_to_tuple(meta)
 
 #Db insert
 db_insert(tupData, tupMeta)
-
+update_geoset_id()

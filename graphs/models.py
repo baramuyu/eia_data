@@ -29,6 +29,7 @@ class Scategory(models.Model):
     category7 = models.ForeignKey('MetaCategory', related_name='category7', null=True)
     category8 = models.ForeignKey('MetaCategory', related_name='category8', null=True)
     category9 = models.ForeignKey('MetaCategory', related_name='category9', null=True)
+    geoset_id = models.CharField(max_length=100, null=True)
 
     def __unicode__(self):
         return self.series_id
@@ -36,6 +37,12 @@ class Scategory(models.Model):
 class MetaCategory(models.Model):
     category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+class States(models.Model):
+    name = models.CharField(primary_key=True, max_length=2)
 
     def __unicode__(self):
         return self.name

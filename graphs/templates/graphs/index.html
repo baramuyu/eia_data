@@ -57,7 +57,6 @@
         <button type="button" class="cat_id{{cat4.list.0.category3}} cat_id{{cat4.list.0.category4}} btn btn-default hidden" name="tttt" value="{{cat4.list.0.category4}}">{{ cat4.grouper }}
             <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
         </button>
-        
         {% endif %}
     {% endfor %}
     </div>
@@ -69,18 +68,26 @@
         <button type="button" class="cat_id{{cat5.list.0.category4}} cat_id{{cat5.list.0.category5}} btn btn-default hidden" name="ttttt" value="{{cat5.list.0.category5}}">{{ cat5.grouper }}
             <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
         </button>
-        
         {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group0" aria-label="name0">
+    {% for cat0 in cat_list %}
+            {% for s in cat0.list %}
+            <a href="{% url 'graphs:detail' s.series_id %}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</a>
+            {% endfor %}
     {% endfor %}
     </div>
 
 <!--     <div class="btn-group-vertical" role="group6" aria-label="name6">
     {% for Scategory in category_list %}
         {% if Scategory.series_id %}
-            <a href="{% url 'graphs:detail' Scategory.series_id %}" class="btn btn-info" role="button">{{ Scategory.series_id }}</a>
+            <a href="{% url 'graphs:detail' Scategory.series_id %}" class="cat_id{{cat5.list.0.category5}} btn btn-info hidden" role="button" name="ttttt" >SELECT{{cat5.list.0.category5}}</a>
         {% endif %}    
     {% endfor %}
     </div> -->
+
 {% else %}
     <p>No categories are available.</p>
 {% endif %}
@@ -89,12 +96,17 @@
 {% block extrajs %}
 <script type="text/javascript">
 $(document).ready(function() {
+    var last_click = ''
     $(":button").click(function() {
         //hidden lower heilarkey 
         var t = $(this).attr('name');
         $("[name^="+t+"t]").addClass("hidden") //start from "t..."
         var myClasses = this.classList;
         $("."+myClasses[1]).removeClass('hidden'); //show next level
+        last_click = myClasses[1];
+        if ($("."+myClasses[1]).size() == 1){
+            $("."+last_click.slice(6)).removeClass('hidden'); //show select button
+        }
         $(this).removeClass("btn-default").addClass("btn-primary") //select
         $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
     });

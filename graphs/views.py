@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.db.models import Min
 
-from .models import Category, Graph, Scategory
+from .models import Category, Graph, Scategory, States
 
 class IndexView(generic.ListView):
     template_name = 'graphs/index.html'
@@ -34,11 +34,9 @@ class IndexView(generic.ListView):
             "category9"
             ).annotate(series_id=Min('series_id'))
 
-
-
 class DetailView(generic.DetailView):
-    model = Scategory
     template_name = 'graphs/detail.html'
+    model = Scategory
 
 '''
 def index(request):
