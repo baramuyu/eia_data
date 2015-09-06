@@ -32,12 +32,12 @@ class IndexView(generic.ListView):
             "category7",
             "category8",
             "category9"
-            ).annotate(series_id=Min('series_id'))
+            ).annotate(geoset_id=Min('geoset_id'))
 
 class DetailView(generic.DetailView):
     template_name = 'graphs/detail.html'
     model = Scategory
-
+    #queryset = Scategory.objects.all()
 '''
 def index(request):
     category_list = Category.objects.order_by('name')

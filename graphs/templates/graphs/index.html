@@ -7,14 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-<!--
-     <div class="btn-group-vertical" role="group" aria-label="name">
-      <a href="#" class="btn btn-info" role="button">Link Button</a>
-      <button type="button" class="btn btn-default">1</button>
-      <button type="button" class="btn btn-default">2</button>
-    </div>   -->  
-    
+<div class="container buttons">
 {% if category_list %}  
     <div class="btn-group-vertical" role="group1" data-toggle="buttons">
     {% regroup category_list by category1__name as cat_list %}
@@ -75,19 +68,10 @@
     <div class="btn-group-vertical" role="group0" aria-label="name0">
     {% for cat0 in cat_list %}
             {% for s in cat0.list %}
-            <a href="{% url 'graphs:detail' s.series_id %}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</a>
+                <button type="button" value ="{{s.geoset_id}}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</button>
             {% endfor %}
     {% endfor %}
     </div>
-
-<!--     <div class="btn-group-vertical" role="group6" aria-label="name6">
-    {% for Scategory in category_list %}
-        {% if Scategory.series_id %}
-            <a href="{% url 'graphs:detail' Scategory.series_id %}" class="cat_id{{cat5.list.0.category5}} btn btn-info hidden" role="button" name="ttttt" >SELECT{{cat5.list.0.category5}}</a>
-        {% endif %}    
-    {% endfor %}
-    </div> -->
-
 {% else %}
     <p>No categories are available.</p>
 {% endif %}
@@ -97,7 +81,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var last_click = ''
-    $(":button").click(function() {
+    $(":button:not(.select)").click(function() {
         //hidden lower heilarkey 
         var t = $(this).attr('name');
         $("[name^="+t+"t]").addClass("hidden") //start from "t..."
@@ -110,6 +94,13 @@ $(document).ready(function() {
         $(this).removeClass("btn-default").addClass("btn-primary") //select
         $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
     });
+    $(".select").click(function(){
+        var val = $(this).attr("value")
+        pcontainer = $( ".container.buttons:has([value='"+val+"'])")
+        pcontainer.append("</br>")
+        pcontainer.append("<iframe src=\"{% url 'graphs:detail' 'ELEC.CONS_EG.PEL-AK-99.A' %}\" width=\"900\" height=\"900\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe>")
+
+    })
 
 })
 </script>
