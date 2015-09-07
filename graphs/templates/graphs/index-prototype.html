@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block heading %}
+    <h3><span class="fa fa-th"></span> Category menu</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container buttons">
+{% if category_list %}  
+    <div class="btn-group-vertical" role="group1" data-toggle="buttons">
+    {% regroup category_list by category1__name as cat_list %}
+    {% for cat1 in cat_list %}
+        {% if cat1.grouper %}
+        <button type="button" class="dummy cat_id{{cat1.list.0.category1}} btn btn-default" name="t" value="{{cat1.list.0.category1}}" >{{ cat1.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group2" >
+    {% regroup category_list by category2__name as cat_list %}
+    {% for cat2 in cat_list %}
+        {% if cat2.grouper %}
+        <button type="button" class="cat_id{{cat2.list.0.category1}} cat_id{{cat2.list.0.category2}} btn btn-default hidden" name="tt" value="{{cat2.list.0.category2}}">{{ cat2.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group3" >
+    {% regroup category_list by category3__name as cat_list %}
+    {% for cat3 in cat_list %}
+        {% if cat3.grouper %}
+        <button type="button" class="cat_id{{cat3.list.0.category2}} cat_id{{cat3.list.0.category3}} btn btn-default hidden" name="ttt" value="{{cat3.list.0.category3}}" >{{ cat3.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group4" >
+    {% regroup category_list by category4__name as cat_list %}
+    {% for cat4 in cat_list %}
+        {% if cat4.grouper %}
+        <button type="button" class="cat_id{{cat4.list.0.category3}} cat_id{{cat4.list.0.category4}} btn btn-default hidden" name="tttt" value="{{cat4.list.0.category4}}">{{ cat4.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group5" >
+    {% regroup category_list by category5__name as cat_list %}
+    {% for cat5 in cat_list %}
+        {% if cat5.grouper %}
+        <button type="button" class="cat_id{{cat5.list.0.category4}} cat_id{{cat5.list.0.category5}} btn btn-default hidden" name="ttttt" value="{{cat5.list.0.category5}}">{{ cat5.grouper }}
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </button>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="btn-group-vertical" role="group0" aria-label="name0">
+    {% for cat0 in cat_list %}
+            {% for s in cat0.list %}
+                <button type="button" value ="{{s.geoset_id}}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</button>
+            {% endfor %}
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No categories are available.</p>
+{% endif %}
+</div> 
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+$(document).ready(function() {
+    var last_click = ''
+    $(":button:not(.select)").click(function() {
+        //hidden lower heilarkey 
+        var t = $(this).attr('name');
+        $("[name^="+t+"t]").addClass("hidden") //start from "t..."
+        var myClasses = this.classList;
+        $("."+myClasses[1]).removeClass('hidden'); //show next level
+        last_click = myClasses[1];
+        if ($("."+myClasses[1]).size() == 1){
+            $("."+last_click.slice(6)).removeClass('hidden'); //show select button
+        }
+        $(this).removeClass("btn-default").addClass("btn-primary") //select
+        $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
+    });
+    $(".select").click(function(){
+        var val = $(this).attr("value")
+        pcontainer = $( ".container.buttons:has([value='"+val+"'])")
+        pcontainer.append("</br>")
+        pcontainer.append("<iframe src=\"{% url 'graphs:detail' 'ELEC.CONS_EG.PEL-AK-99.A' %}\" width=\"900\" height=\"900\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe>")
+
+    })
+
+})
+</script>
+{% endblock %}

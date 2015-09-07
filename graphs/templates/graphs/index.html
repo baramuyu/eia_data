@@ -7,100 +7,184 @@
 {% endblock %}
 
 {% block content %}
-<div class="container buttons">
 {% if category_list %}  
-    <div class="btn-group-vertical" role="group1" data-toggle="buttons">
-    {% regroup category_list by category1__name as cat_list %}
-    {% for cat1 in cat_list %}
-        {% if cat1.grouper %}
-        <button type="button" class="dummy cat_id{{cat1.list.0.category1}} btn btn-default" name="t" value="{{cat1.list.0.category1}}" >{{ cat1.grouper }}
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </button>
-        {% endif %}
-    {% endfor %}
-    </div>
+<div class="row">
+    <div class="tree col-lg-4">
+        {% regroup category_list by category1__name as cat_list1 %}
+        {% regroup category_list by category2__name as cat_list2 %}
+        {% regroup category_list by category3__name as cat_list3 %}
+        {% regroup category_list by category4__name as cat_list4 %}
+        {% regroup category_list by category5__name as cat_list5 %}
 
-    <div class="btn-group-vertical" role="group2" >
-    {% regroup category_list by category2__name as cat_list %}
-    {% for cat2 in cat_list %}
-        {% if cat2.grouper %}
-        <button type="button" class="cat_id{{cat2.list.0.category1}} cat_id{{cat2.list.0.category2}} btn btn-default hidden" name="tt" value="{{cat2.list.0.category2}}">{{ cat2.grouper }}
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </button>
-        {% endif %}
-    {% endfor %}
-    </div>
+    {% for cat1 in cat_list1 %}
+        <ul><li><span><i class="icon-calendar"></i> {{ cat1.grouper }}</span>
 
-    <div class="btn-group-vertical" role="group3" >
-    {% regroup category_list by category3__name as cat_list %}
-    {% for cat3 in cat_list %}
-        {% if cat3.grouper %}
-        <button type="button" class="cat_id{{cat3.list.0.category2}} cat_id{{cat3.list.0.category3}} btn btn-default hidden" name="ttt" value="{{cat3.list.0.category3}}" >{{ cat3.grouper }}
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </button>
-        
-        {% endif %}
-    {% endfor %}
-    </div>
+                {% for cat2 in cat_list2 %}
+                    {% if cat1.grouper == cat2.list.0.category1__name and cat2.grouper  %}
+                        <ul><li><span class="badge badge-info "><i class="icon-minus-sign"></i> {{ cat2.grouper }}</span>  
 
-    <div class="btn-group-vertical" role="group4" >
-    {% regroup category_list by category4__name as cat_list %}
-    {% for cat4 in cat_list %}
-        {% if cat4.grouper %}
-        <button type="button" class="cat_id{{cat4.list.0.category3}} cat_id{{cat4.list.0.category4}} btn btn-default hidden" name="tttt" value="{{cat4.list.0.category4}}">{{ cat4.grouper }}
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </button>
-        {% endif %}
-    {% endfor %}
-    </div>
+                        {% for cat3 in cat_list3 %} 
+                            {% if cat2.grouper == cat3.list.0.category2__name and cat3.grouper  %}
+                                {% if cat3.list.0.category4 %}
+                                    <ul><li><span class="badge"><i class="icon-minus-sign"></i> {{ cat3.grouper }}</span>
+                                {% else %}
+                                    <ul><li> 
+                                    <button type="button" value ="{{ cat3.list.0.geoset_id }}" class="select btn btn-info " role="button" >
+                                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat3.grouper }}</button>
+                                {% endif %}
 
-    <div class="btn-group-vertical" role="group5" >
-    {% regroup category_list by category5__name as cat_list %}
-    {% for cat5 in cat_list %}
-        {% if cat5.grouper %}
-        <button type="button" class="cat_id{{cat5.list.0.category4}} cat_id{{cat5.list.0.category5}} btn btn-default hidden" name="ttttt" value="{{cat5.list.0.category5}}">{{ cat5.grouper }}
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        </button>
-        {% endif %}
-    {% endfor %}
-    </div>
+                                {% for cat4 in cat_list4 %} 
+                                    {% if cat3.grouper == cat4.list.0.category3__name and cat4.grouper  %}
+                                        {% if cat4.list.0.category5 %}
+                                            <ul><li><span class="badge badge-Success"><i class="icon-minus-sign"></i> {{ cat4.grouper }}</span>
+                                        {% else %}
+                                            <ul><li>
+                                            <button type="button" value ="{{ cat4.list.0.geoset_id }}" class="select btn btn-info " role="button" ><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat4.grouper }}</button>
+                                        {% endif %}
 
-    <div class="btn-group-vertical" role="group0" aria-label="name0">
-    {% for cat0 in cat_list %}
-            {% for s in cat0.list %}
-                <button type="button" value ="{{s.geoset_id}}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</button>
+                                        {% for cat5 in cat_list5 %} 
+                                            {% if cat4.grouper == cat5.list.0.category4__name and cat5.grouper  %}
+                                                {% if cat5.list.0.category6 %}
+                                                    <ul><li><span class="badge badge-Warning"><i class="icon-minus-sign"></i> {{ cat5.grouper }}</span>
+                                                {% else %}
+                                                    <ul><li>
+                                                    <button type="button" value ="{{ cat5.list.0.geoset_id }}" class="select btn btn-info " role="button" ><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat5.grouper }}</button>
+                                                {% endif %}
+
+                                                </li></ul>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </li></ul>
+                                    {% endif %}
+                                {% endfor %}
+                                </li></ul>
+                            {% endif %}
+                        {% endfor %}
+                        </li></ul>
+                    {% endif %}
+                {% endfor %}
+        </li></ul>
+    {% endfor %}
+    </div> 
+    <div class="col-lg-8 graphs" >
+    </div>
+</div>
+       
+    <!-- PROTOTYPE
+        <div class="container buttons">
+            <div class="btn-group-vertical" role="group1" data-toggle="buttons">
+            {% regroup category_list by category1__name as cat_list %}
+            {% for cat1 in cat_list %}
+                {% if cat1.grouper %}
+                <button type="button" class="dummy cat_id{{cat1.list.0.category1}} btn btn-default" name="t" value="{{cat1.list.0.category1}}" >{{ cat1.grouper }}
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                {% endif %}
             {% endfor %}
-    {% endfor %}
-    </div>
-{% else %}
-    <p>No categories are available.</p>
-{% endif %}
-</div> 
+            </div>
+
+            <div class="btn-group-vertical" role="group2" >
+            {% regroup category_list by category2__name as cat_list %}
+            {% for cat2 in cat_list %}
+                {% if cat2.grouper %}
+                <button type="button" class="cat_id{{cat2.list.0.category1}} cat_id{{cat2.list.0.category2}} btn btn-default hidden" name="tt" value="{{cat2.list.0.category2}}">{{ cat2.grouper }}
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <div class="btn-group-vertical" role="group3" >
+            {% regroup category_list by category3__name as cat_list %}
+            {% for cat3 in cat_list %}
+                {% if cat3.grouper %}
+                <button type="button" class="cat_id{{cat3.list.0.category2}} cat_id{{cat3.list.0.category3}} btn btn-default hidden" name="ttt" value="{{cat3.list.0.category3}}" >{{ cat3.grouper }}
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <div class="btn-group-vertical" role="group4" >
+            {% regroup category_list by category4__name as cat_list %}
+            {% for cat4 in cat_list %}
+                {% if cat4.grouper %}
+                <button type="button" class="cat_id{{cat4.list.0.category3}} cat_id{{cat4.list.0.category4}} btn btn-default hidden" name="tttt" value="{{cat4.list.0.category4}}">{{ cat4.grouper }}
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <div class="btn-group-vertical" role="group5" >
+            {% regroup category_list by category5__name as cat_list %}
+            {% for cat5 in cat_list %}
+                {% if cat5.grouper %}
+                <button type="button" class="cat_id{{cat5.list.0.category4}} cat_id{{cat5.list.0.category5}} btn btn-default hidden" name="ttttt" value="{{cat5.list.0.category5}}">{{ cat5.grouper }}
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <div class="btn-group-vertical" role="group0" aria-label="name0">
+            {% for cat0 in cat_list %}
+                    {% for s in cat0.list %}
+                        <button type="button" value ="{{s.geoset_id}}" class="select btn btn-info hidden {{s.category1}} {{s.category2}} {{s.category3}} {{s.category4}} {{s.category5}}" role="button" name="tttttt" >SELECT</button>
+                    {% endfor %}
+            {% endfor %}
+        </div> -->
+    {% else %}
+        <p>No categories are available.</p>
+    {% endif %}
+
 {% endblock %}
 {% block extrajs %}
 <script type="text/javascript">
 $(document).ready(function() {
-    var last_click = ''
-    $(":button:not(.select)").click(function() {
-        //hidden lower heilarkey 
-        var t = $(this).attr('name');
-        $("[name^="+t+"t]").addClass("hidden") //start from "t..."
-        var myClasses = this.classList;
-        $("."+myClasses[1]).removeClass('hidden'); //show next level
-        last_click = myClasses[1];
-        if ($("."+myClasses[1]).size() == 1){
-            $("."+last_click.slice(6)).removeClass('hidden'); //show select button
-        }
-        $(this).removeClass("btn-default").addClass("btn-primary") //select
-        $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
-    });
+    // var last_click = ''
+    // $(":button:not(.select)").click(function() {
+    //     //hidden lower heilarkey 
+    //     var t = $(this).attr('name');
+    //     $("[name^="+t+"t]").addClass("hidden") //start from "t..."
+    //     var myClasses = this.classList;
+    //     $("."+myClasses[1]).removeClass('hidden'); //show next level
+    //     last_click = myClasses[1];
+    //     if ($("."+myClasses[1]).size() == 1){
+    //         $("."+last_click.slice(6)).removeClass('hidden'); //show select button
+    //     }
+    //     $(this).removeClass("btn-default").addClass("btn-primary") //select
+    //     $(this).siblings().removeClass("btn-primary").addClass("btn-default") //deselect     
+    // });
     $(".select").click(function(){
         var val = $(this).attr("value")
-        pcontainer = $( ".container.buttons:has([value='"+val+"'])")
-        pcontainer.append("</br>")
-        pcontainer.append("<iframe src=\"{% url 'graphs:detail' 'ELEC.CONS_EG.PEL-AK-99.A' %}\" width=\"900\" height=\"900\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe>")
-
+        pcontainer = $( ".graphs")
+        // pcontainer.append("<iframe src=\"{% url 'graphs:detail' 'ELEC.CONS_EG.PEL-AK-99.A' %}\" width=\"615\" height=\"900\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe>")
+ 
+        pcontainer.append("<div class=\"embed-responsive embed-responsive-4by3\"><iframe class=\"embed-responsive-item\" src=\"{% url 'graphs:detail' 'ELEC.CONS_EG.PEL-AK-99.A' %}\" width=\"100%\" height=\"900\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe></div>")  
+        //pcontainer.append("<div>test</div>")
     })
+    //bootstrap-tree start
+    //https://github.com/jhfrench/bootstrap-tree 
+    $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+    $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(':visible')) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        }
+        else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation();
+    });
+    //bootstrap-tree end
+
+    //init - all elements are collapsed
+    $('div.tree').find('.parent_li').find('li').hide('fast')
+    $('div.tree').find('i.icon-minus-sign').addClass('icon-plus-sign').removeClass('icon-minus-sign');
 
 })
 </script>
