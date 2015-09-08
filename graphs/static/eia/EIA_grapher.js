@@ -33,7 +33,7 @@ var EIA_grapher = function(){ //single top level variable see
         eiaVisualizationClass: 'eia-visualization',
         chartClass: 'eia_map_widget',
         mapClass: 'eia_map_widget',
-        mapRelationWidthSplit: 0.69,
+        mapRelationWidthSplit: 0.49, //Edited by Yuki
         monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         secondaryVizModes: { //enumeration of secondary visualization modes pass in via a DIV's "relation-mode" attribute.  The default mode is "pie"  
             "pie": 'pie', //requires a relation and API fetch.  Relation must be summable, else displays as bar
@@ -209,7 +209,7 @@ var EIA_grapher = function(){ //single top level variable see
                 var divHeight = $vizDiv.innerHeight();  //need to apply height to inner divs
 
                 $vizDiv.html('<div class="EIA_relation" style="float: right;width: '+parseInt(totalWidth*(1-literals.mapRelationWidthSplit-0.01))+'px;"></div><div class="EIA_map" style="display:inline-block;width: '+(100*literals.mapRelationWidthSplit)+'%;position: relative"></div>')
-                $mapDiv = $vizDiv.find('.EIA_map').height(divHeight);
+                $mapDiv = $vizDiv.find('.EIA_map').height(divHeight); //edited by yuki
                 $relationDiv = $vizDiv.find('.EIA_relation').height(divHeight);
             } else {
                 // B. map (solo without secondary visualization)
@@ -413,9 +413,8 @@ var EIA_grapher = function(){ //single top level variable see
                 }
             }
             //add the map title
-            $mapDiv.prepend('<span class="EIA-map-title" style="position: absolute;z-index: 10000;left: 100px;color: black;"></span>')
-                .find('.EIA-map-title').html(title||mapOptions.title);
-
+            // $mapDiv.prepend('<span class="EIA-map-title" style="position: absolute;z-index: 10000;left: 100px;color: black;"></span>')
+            //     .find('.EIA-map-title').html(title||mapOptions.title);
             function _removeUnselectedUntrackedLines(){
                 var i, hcSerie;
                 for(i=0;i<relationChart.series.length;i++){
@@ -831,11 +830,15 @@ var EIA_grapher = function(){ //single top level variable see
 
                 },
                 legend: {
-                    y: 20
-                },
+                    y: 10 //edited by yuki
+                }, 
                 credits: {
                     text: 'Energy Information Administration', //shorted
-                    href: 'http://www.eia.gov'
+                    href: 'http://www.eia.gov',
+                    position: { //edited by yuki
+                        y: 50, 
+                        verticalAlign: 'top' 
+                    }
                 },
                 exporting: {
                     enabled: false

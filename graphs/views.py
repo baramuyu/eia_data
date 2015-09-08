@@ -32,7 +32,7 @@ class IndexView(generic.ListView):
             "category7",
             "category8",
             "category9"
-            ).annotate(geoset_id=Min('geoset_id'))
+            ).annotate(series_id=Min('series_id'))
 
 class DetailView(generic.DetailView):
     template_name = 'graphs/detail.html'
