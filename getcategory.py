@@ -7,8 +7,9 @@ import re
 
 api_key = '67929F4F6AEAC2F250AE188343D01BA6'
 apiurl = 'http://api.eia.gov/category/'
-root_id = 36
+root_id = 40
 #connect_db = 'testdb.sqlite3'
+skip_id = [32,33,34,1017,41145];
 connect_db = 'db.sqlite3'
 
 def set_param(category_id):
@@ -54,8 +55,8 @@ def get_children(self_catid, data, level):
     if len(data['category']['childseries']) != 0:
         for e in data['category']['childseries']:
             #get child category_id, self category_id, data level
-            outSeriesid.append([e['series_id'], self_catid, level])
-            return outChildren, meta;
+            outSeriesid.append([e['series_id'], self_catid, level]) 
+            return outChildren, meta; #! intend
     #get children categories
     if len(data['category']['childcategories']) != 0:
         for child in data['category']['childcategories']:
@@ -74,11 +75,12 @@ def get_series_id(param):
         #no child category_id to search
         return False, outChildren, meta;
     for child_id in outChildren[param]:
-        current_id = child_id;
-        #call api
-        data = get_cat_data(current_id);
-        #extract data
-        outChildren, meta = get_children(current_id, data, param+1);
+        if(child_id not in skip_id):
+            current_id = child_id;
+            #call api
+            data = get_cat_data(current_id);
+            #extract data
+            outChildren, meta = get_children(current_id, data, param+1);
     return True, outChildren, meta;
 
 def get_parentsId(record, level, p):
@@ -153,19 +155,16 @@ def update_geoset_id():
     keys = [];
     for row in c.execute(sql):
         keys.append(row);
-
     #create geoset_id
     p = re.compile("[A-Z]*-([0-9A-Z]*\.)[A|M|Q]")
     #original - ELEC.SALES.AL-ALL.Q
     #getset_id- ELEC.SALES.ALL.Q
-
     for key in keys:
         sql=('UPDATE graphs_scategory SET geoset_id = ?'
          + 'WHERE series_id = ?')
         geoset_id = p.sub(r"\1A", key[0])
         args = [geoset_id] + [key[0]]
         c.execute(sql,args)
-
     conn.commit()
     conn.close()
 

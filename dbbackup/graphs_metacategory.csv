@@ -1,0 +1,889 @@
+category_id,name
+0,Electricity
+1,Net generation from electricity plants
+32,Total consumption (Btu)
+33,Consumption for electricty generation (Btu)
+34,Consumption for useful thermal output (Btu)
+35,Total consumption
+36,Consumption for electricty generation
+37,Consumption for useful thermal output
+38,Retail sales of electricity
+39,Revenue from retail sales of electricity
+40,Average retail price of electricity
+372,By sector
+373,By fuel type
+374,By sector
+375,By fuel type
+376,By sector
+377,By fuel type
+378,By sector
+379,By fuel type
+380,By sector
+381,By fuel type
+382,By sector
+383,By fuel type
+384,Coal
+385,Petroleum liquids
+386,Petroleum coke
+387,Natural gas
+388,Electric power (total)
+389,Electric utility
+390,Independent power producers (total)
+391,Electric utility non-cogen
+392,Electric utility cogen
+393,All commercial (total)
+394,Commercial non-cogen
+395,Commercial cogen
+396,All industrial (total)
+397,Industrial non-cogen
+398,Industrial cogen
+399,Coal
+400,Petroleum liquids
+401,Petroleum coke
+402,Natural gas
+403,Electric power (total)
+404,Electric utility
+405,Independent power producers (total)
+406,Electric utility non-cogen
+407,Electric utility cogen
+408,All commercial (total)
+409,Commercial non-cogen
+410,Commercial cogen
+411,All industrial (total)
+412,Industrial non-cogen
+413,Industrial cogen
+414,Coal
+415,Petroleum liquids
+416,Petroleum coke
+417,Natural gas
+418,Electric power (total)
+420,Independent power producers (total)
+422,Electric utility cogen
+423,All commercial (total)
+424,Commercial non-cogen
+425,Commercial cogen
+426,All industrial (total)
+428,Industrial cogen
+429,Coal
+430,Petroleum liquids
+431,Petroleum coke
+432,Natural gas
+433,Electric power (total)
+434,Electric utility
+435,Independent power producers (total)
+436,Electric utility non-cogen
+437,Electric utility cogen
+438,All commercial (total)
+439,Commercial non-cogen
+440,Commercial cogen
+441,All industrial (total)
+442,Industrial non-cogen
+443,Industrial cogen
+444,Coal
+445,Petroleum liquids
+446,Petroleum coke
+447,Natural gas
+448,Electric power (total)
+449,Electric utility
+450,Independent power producers (total)
+451,Electric utility non-cogen
+452,Electric utility cogen
+453,All commercial (total)
+454,Commercial non-cogen
+455,Commercial cogen
+456,All industrial (total)
+457,Industrial non-cogen
+458,Industrial cogen
+459,Coal
+460,Petroleum liquids
+461,Petroleum coke
+462,Natural gas
+463,Electric power (total)
+465,Independent power producers (total)
+467,Electric utility cogen
+468,All commercial (total)
+469,Commercial non-cogen
+470,Commercial cogen
+471,All industrial (total)
+473,Industrial cogen
+738,Coal
+739,Petroleum liquids
+740,Petroleum coke
+741,Natural gas
+742,Coal
+743,Petroleum liquids
+744,Petroleum coke
+745,Natural gas
+746,Coal
+747,Petroleum liquids
+748,Petroleum coke
+749,Natural gas
+750,Coal
+751,Petroleum liquids
+752,Petroleum coke
+753,Natural gas
+754,Coal
+755,Petroleum liquids
+756,Petroleum coke
+757,Natural gas
+758,Coal
+759,Petroleum liquids
+760,Petroleum coke
+761,Natural gas
+762,Coal
+763,Petroleum liquids
+765,Natural gas
+766,Coal
+767,Petroleum liquids
+768,Petroleum coke
+769,Natural gas
+770,Coal
+771,Petroleum liquids
+772,Petroleum coke
+773,Natural gas
+774,Coal
+775,Petroleum liquids
+776,Petroleum coke
+777,Natural gas
+778,Coal
+779,Petroleum liquids
+780,Petroleum coke
+781,Natural gas
+782,Coal
+783,Petroleum liquids
+784,Petroleum coke
+785,Natural gas
+786,Coal
+787,Petroleum liquids
+788,Petroleum coke
+789,Natural gas
+790,Coal
+791,Petroleum liquids
+792,Petroleum coke
+793,Natural gas
+794,Coal
+795,Petroleum liquids
+796,Petroleum coke
+797,Natural gas
+798,Coal
+799,Petroleum liquids
+800,Petroleum coke
+801,Natural gas
+802,Coal
+803,Petroleum liquids
+804,Petroleum coke
+805,Natural gas
+806,Coal
+807,Petroleum liquids
+809,Natural gas
+810,Coal
+811,Petroleum liquids
+812,Petroleum coke
+813,Natural gas
+814,Coal
+815,Petroleum liquids
+816,Petroleum coke
+817,Natural gas
+818,Coal
+819,Petroleum liquids
+820,Petroleum coke
+821,Natural gas
+822,Coal
+823,Petroleum liquids
+824,Petroleum coke
+825,Natural gas
+826,Coal
+827,Petroleum liquids
+828,Petroleum coke
+829,Natural gas
+834,Coal
+835,Petroleum liquids
+836,Petroleum coke
+837,Natural gas
+842,Coal
+843,Petroleum liquids
+844,Petroleum coke
+845,Natural gas
+846,Coal
+847,Petroleum liquids
+848,Petroleum coke
+849,Natural gas
+853,Natural gas
+854,Coal
+855,Petroleum liquids
+856,Petroleum coke
+857,Natural gas
+858,Coal
+859,Petroleum liquids
+860,Petroleum coke
+861,Natural gas
+866,Coal
+867,Petroleum liquids
+868,Petroleum coke
+869,Natural gas
+870,Coal
+871,Petroleum liquids
+872,Petroleum coke
+873,Natural gas
+874,Coal
+875,Petroleum liquids
+876,Petroleum coke
+877,Natural gas
+878,Coal
+879,Petroleum liquids
+880,Petroleum coke
+881,Natural gas
+882,Coal
+883,Petroleum liquids
+884,Petroleum coke
+885,Natural gas
+886,Coal
+887,Petroleum liquids
+888,Petroleum coke
+889,Natural gas
+890,Coal
+891,Petroleum liquids
+892,Petroleum coke
+893,Natural gas
+894,Coal
+895,Petroleum liquids
+897,Natural gas
+898,Coal
+899,Petroleum liquids
+900,Petroleum coke
+901,Natural gas
+902,Coal
+903,Petroleum liquids
+904,Petroleum coke
+905,Natural gas
+906,Coal
+907,Petroleum liquids
+908,Petroleum coke
+909,Natural gas
+910,Coal
+911,Petroleum liquids
+912,Petroleum coke
+913,Natural gas
+914,Coal
+915,Petroleum liquids
+916,Petroleum coke
+917,Natural gas
+918,Coal
+919,Petroleum liquids
+920,Petroleum coke
+921,Natural gas
+922,Coal
+923,Petroleum liquids
+924,Petroleum coke
+925,Natural gas
+926,Coal
+927,Petroleum liquids
+928,Petroleum coke
+929,Natural gas
+930,Coal
+931,Petroleum liquids
+932,Petroleum coke
+933,Natural gas
+934,Coal
+935,Petroleum liquids
+936,Petroleum coke
+937,Natural gas
+938,Coal
+939,Petroleum liquids
+941,Natural gas
+942,Coal
+943,Petroleum liquids
+944,Petroleum coke
+945,Natural gas
+946,Coal
+947,Petroleum liquids
+948,Petroleum coke
+949,Natural gas
+950,Coal
+951,Petroleum liquids
+952,Petroleum coke
+953,Natural gas
+954,Coal
+955,Petroleum liquids
+956,Petroleum coke
+957,Natural gas
+958,Coal
+959,Petroleum liquids
+960,Petroleum coke
+961,Natural gas
+965,Coal
+966,Petroleum liquids
+967,Petroleum coke
+968,Natural gas
+973,Coal
+974,Petroleum liquids
+975,Petroleum coke
+976,Natural gas
+977,Coal
+978,Petroleum liquids
+979,Petroleum coke
+980,Natural gas
+982,Petroleum liquids
+984,Natural gas
+985,Coal
+986,Petroleum liquids
+987,Petroleum coke
+988,Natural gas
+989,Coal
+990,Petroleum liquids
+991,Petroleum coke
+992,Natural gas
+997,Coal
+998,Petroleum liquids
+999,Petroleum coke
+1000,Natural gas
+1017,Plant level data
+41137,Fossil-fuel stocks for electricity generation
+41138,Receipts of fossil fuels by electricity plants
+41139,Receipts of fossil fuels by electricity plants (Btu)
+41140,Average cost of fossil fuels for electricity generation
+41141,Average cost of fossil fuels for electricity generation (per Btu)
+41142,Quality of fossil fuels in electricity generation : sulfur content
+41143,Quality of fossil fuels in electricity generation : ash content
+41144,By sector
+41145,By fuel type
+41146,By sector
+41147,By fuel type
+41148,By sector
+41149,By fuel type
+41150,By sector
+41151,By fuel type
+41152,By sector
+41153,By fuel type
+41154,By sector
+41155,By fuel type
+41156,By sector
+41157,By fuel type
+41158,Electric power (total)
+41159,Electric utility
+41160,Independent power producers
+41161,Coal
+41162,Bituminous coal
+41163,Subbituminous coal
+41164,Lignite coal
+41165,Petroleum liquids
+41166,Petroleum coke
+41167,Coal
+41168,Bituminous coal
+41169,Subbituminous coal
+41170,Lignite coal
+41171,Petroleum liquids
+41172,Petroleum coke
+41173,Coal
+41174,Bituminous coal
+41175,Subbituminous coal
+41176,Lignite coal
+41177,Petroleum liquids
+41178,Petroleum coke
+41179,Coal
+41180,Bituminous coal
+41181,Subbituminous coal
+41182,Lignite coal
+41183,Petroleum liquids
+41184,Petroleum coke
+41185,Electric power (total)
+41186,Electric utility
+41187,Independent power producers
+41188,Electric power (total)
+41189,Electric utility
+41190,Independent power producers
+41191,Electric power (total)
+41192,Electric utility
+41193,Independent power producers
+41194,Electric power (total)
+41195,Electric utility
+41196,Independent power producers
+41197,Electric power (total)
+41198,Electric utility
+41199,Independent power producers
+41200,Electric power (total)
+41201,Electric utility
+41202,Independent power producers
+41203,Coal
+41204,Bituminous coal
+41205,Subbituminous coal
+41206,Lignite coal
+41207,Petroleum liquids
+41208,Petroleum coke
+41209,Natural gas
+41210,Electric power (total)
+41211,Electric utility
+41212,Independent power producers (total)
+41213,Electric utility non-cogen
+41214,Electric utility cogen
+41215,All commercial (total)
+41216,Commercial non-cogen
+41217,Commercial cogen
+41218,All industrial (total)
+41219,Industrial non-cogen
+41220,Industrial cogen
+41221,Coal
+41222,Bituminous coal
+41223,Subbituminous coal
+41224,Lignite coal
+41225,Petroleum liquids
+41226,Petroleum coke
+41227,Natural gas
+41228,Coal
+41229,Bituminous coal
+41230,Subbituminous coal
+41231,Lignite coal
+41232,Petroleum liquids
+41233,Petroleum coke
+41234,Natural gas
+41235,Coal
+41236,Bituminous coal
+41237,Subbituminous coal
+41238,Lignite coal
+41239,Petroleum liquids
+41240,Petroleum coke
+41241,Natural gas
+41242,Coal
+41243,Bituminous coal
+41244,Subbituminous coal
+41245,Lignite coal
+41246,Petroleum liquids
+41247,Petroleum coke
+41248,Natural gas
+41249,Coal
+41250,Bituminous coal
+41251,Subbituminous coal
+41253,Petroleum liquids
+41254,Petroleum coke
+41255,Natural gas
+41256,Coal
+41257,Bituminous coal
+41258,Subbituminous coal
+41260,Petroleum liquids
+41261,Petroleum coke
+41262,Natural gas
+41267,Petroleum liquids
+41269,Natural gas
+41270,Coal
+41271,Bituminous coal
+41272,Subbituminous coal
+41274,Petroleum liquids
+41275,Petroleum coke
+41276,Natural gas
+41277,Coal
+41278,Bituminous coal
+41279,Subbituminous coal
+41280,Lignite coal
+41281,Petroleum liquids
+41282,Petroleum coke
+41283,Natural gas
+41284,Coal
+41285,Bituminous coal
+41286,Subbituminous coal
+41287,Lignite coal
+41288,Petroleum liquids
+41289,Petroleum coke
+41290,Natural gas
+41291,Coal
+41292,Bituminous coal
+41293,Subbituminous coal
+41294,Lignite coal
+41295,Petroleum liquids
+41296,Petroleum coke
+41297,Natural gas
+41375,Coal
+41376,Bituminous coal
+41377,Subbituminous coal
+41378,Lignite coal
+41379,Petroleum liquids
+41380,Petroleum coke
+41381,Natural gas
+41382,Electric power (total)
+41383,Electric utility
+41384,Independent power producers (total)
+41385,Electric utility non-cogen
+41386,Electric utility cogen
+41387,All commercial (total)
+41388,Commercial non-cogen
+41389,Commercial cogen
+41390,All industrial (total)
+41391,Industrial non-cogen
+41392,Industrial cogen
+41393,Coal
+41394,Bituminous coal
+41395,Subbituminous coal
+41396,Lignite coal
+41397,Petroleum liquids
+41398,Petroleum coke
+41399,Natural gas
+41400,Electric power (total)
+41401,Electric utility
+41402,Independent power producers (total)
+41403,Electric utility non-cogen
+41404,Electric utility cogen
+41405,All commercial (total)
+41406,Commercial non-cogen
+41407,Commercial cogen
+41408,All industrial (total)
+41409,Industrial non-cogen
+41410,Industrial cogen
+41411,Coal
+41412,Bituminous coal
+41413,Subbituminous coal
+41414,Lignite coal
+41415,Petroleum liquids
+41416,Petroleum coke
+41417,Natural gas
+41418,Electric power (total)
+41419,Electric utility
+41420,Independent power producers (total)
+41421,Electric utility non-cogen
+41422,Electric utility cogen
+41423,All commercial (total)
+41424,Commercial non-cogen
+41425,Commercial cogen
+41426,All industrial (total)
+41427,Industrial non-cogen
+41428,Industrial cogen
+41429,Coal
+41430,Bituminous coal
+41431,Subbituminous coal
+41432,Lignite coal
+41433,Petroleum liquids
+41434,Petroleum coke
+41436,Electric power (total)
+41437,Electric utility
+41438,Independent power producers (total)
+41439,Electric utility non-cogen
+41440,Electric utility cogen
+41441,All commercial (total)
+41442,Commercial non-cogen
+41443,Commercial cogen
+41444,All industrial (total)
+41445,Industrial non-cogen
+41446,Industrial cogen
+41447,Coal
+41448,Bituminous coal
+41449,Subbituminous coal
+41450,Lignite coal
+41452,Petroleum coke
+41454,Electric power (total)
+41455,Electric utility
+41456,Independent power producers (total)
+41457,Electric utility non-cogen
+41458,Electric utility cogen
+41459,All commercial (total)
+41461,Commercial cogen
+41462,All industrial (total)
+41463,Industrial non-cogen
+41464,Industrial cogen
+41465,Coal
+41466,Bituminous coal
+41467,Subbituminous coal
+41468,Lignite coal
+41469,Petroleum liquids
+41470,Petroleum coke
+41471,Natural gas
+41472,Coal
+41473,Bituminous coal
+41474,Subbituminous coal
+41475,Lignite coal
+41476,Petroleum liquids
+41477,Petroleum coke
+41478,Natural gas
+41479,Coal
+41480,Bituminous coal
+41481,Subbituminous coal
+41482,Lignite coal
+41483,Petroleum liquids
+41484,Petroleum coke
+41485,Natural gas
+41486,Coal
+41487,Bituminous coal
+41488,Subbituminous coal
+41489,Lignite coal
+41490,Petroleum liquids
+41491,Petroleum coke
+41492,Natural gas
+41493,Coal
+41494,Bituminous coal
+41495,Subbituminous coal
+41497,Petroleum liquids
+41498,Petroleum coke
+41499,Natural gas
+41500,Coal
+41501,Bituminous coal
+41502,Subbituminous coal
+41504,Petroleum liquids
+41505,Petroleum coke
+41506,Natural gas
+41511,Petroleum liquids
+41513,Natural gas
+41514,Coal
+41515,Bituminous coal
+41516,Subbituminous coal
+41518,Petroleum liquids
+41519,Petroleum coke
+41520,Natural gas
+41521,Coal
+41522,Bituminous coal
+41523,Subbituminous coal
+41524,Lignite coal
+41525,Petroleum liquids
+41526,Petroleum coke
+41527,Natural gas
+41528,Coal
+41529,Bituminous coal
+41530,Subbituminous coal
+41531,Lignite coal
+41532,Petroleum liquids
+41533,Petroleum coke
+41534,Natural gas
+41535,Coal
+41536,Bituminous coal
+41537,Subbituminous coal
+41538,Lignite coal
+41539,Petroleum liquids
+41540,Petroleum coke
+41541,Natural gas
+41619,Coal
+41620,Bituminous coal
+41621,Subbituminous coal
+41622,Lignite coal
+41623,Petroleum liquids
+41624,Petroleum coke
+41625,Natural gas
+41626,Coal
+41627,Bituminous coal
+41628,Subbituminous coal
+41629,Lignite coal
+41630,Petroleum liquids
+41631,Petroleum coke
+41632,Natural gas
+41633,Coal
+41634,Bituminous coal
+41635,Subbituminous coal
+41636,Lignite coal
+41637,Petroleum liquids
+41638,Petroleum coke
+41639,Natural gas
+41640,Coal
+41641,Bituminous coal
+41642,Subbituminous coal
+41643,Lignite coal
+41644,Petroleum liquids
+41645,Petroleum coke
+41646,Natural gas
+41647,Coal
+41648,Bituminous coal
+41649,Subbituminous coal
+41651,Petroleum liquids
+41652,Petroleum coke
+41653,Natural gas
+41654,Coal
+41655,Bituminous coal
+41656,Subbituminous coal
+41658,Petroleum liquids
+41659,Petroleum coke
+41660,Natural gas
+41665,Petroleum liquids
+41667,Natural gas
+41668,Coal
+41669,Bituminous coal
+41670,Subbituminous coal
+41672,Petroleum liquids
+41673,Petroleum coke
+41674,Natural gas
+41675,Coal
+41676,Bituminous coal
+41677,Subbituminous coal
+41678,Lignite coal
+41679,Petroleum liquids
+41680,Petroleum coke
+41681,Natural gas
+41682,Coal
+41683,Bituminous coal
+41684,Subbituminous coal
+41685,Lignite coal
+41686,Petroleum liquids
+41688,Natural gas
+41689,Coal
+41690,Bituminous coal
+41691,Subbituminous coal
+41692,Lignite coal
+41693,Petroleum liquids
+41694,Petroleum coke
+41695,Natural gas
+41773,Coal
+41774,Bituminous coal
+41775,Subbituminous coal
+41776,Lignite coal
+41777,Petroleum liquids
+41778,Petroleum coke
+41779,Natural gas
+41780,Coal
+41781,Bituminous coal
+41782,Subbituminous coal
+41783,Lignite coal
+41784,Petroleum liquids
+41785,Petroleum coke
+41786,Natural gas
+41787,Coal
+41788,Bituminous coal
+41789,Subbituminous coal
+41790,Lignite coal
+41791,Petroleum liquids
+41792,Petroleum coke
+41793,Natural gas
+41794,Coal
+41795,Bituminous coal
+41796,Subbituminous coal
+41797,Lignite coal
+41798,Petroleum liquids
+41799,Petroleum coke
+41800,Natural gas
+41801,Coal
+41802,Bituminous coal
+41803,Subbituminous coal
+41805,Petroleum liquids
+41806,Petroleum coke
+41807,Natural gas
+41808,Coal
+41809,Bituminous coal
+41810,Subbituminous coal
+41812,Petroleum liquids
+41813,Petroleum coke
+41814,Natural gas
+41819,Petroleum liquids
+41821,Natural gas
+41822,Coal
+41823,Bituminous coal
+41824,Subbituminous coal
+41826,Petroleum liquids
+41827,Petroleum coke
+41828,Natural gas
+41829,Coal
+41830,Bituminous coal
+41831,Subbituminous coal
+41832,Lignite coal
+41833,Petroleum liquids
+41834,Petroleum coke
+41835,Natural gas
+41836,Coal
+41837,Bituminous coal
+41838,Subbituminous coal
+41839,Lignite coal
+41840,Petroleum liquids
+41842,Natural gas
+41843,Coal
+41844,Bituminous coal
+41845,Subbituminous coal
+41846,Lignite coal
+41847,Petroleum liquids
+41848,Petroleum coke
+41849,Natural gas
+41927,Coal
+41928,Bituminous coal
+41929,Subbituminous coal
+41930,Lignite coal
+41931,Petroleum liquids
+41932,Petroleum coke
+41934,Coal
+41935,Bituminous coal
+41936,Subbituminous coal
+41937,Lignite coal
+41938,Petroleum liquids
+41939,Petroleum coke
+41941,Coal
+41942,Bituminous coal
+41943,Subbituminous coal
+41944,Lignite coal
+41945,Petroleum liquids
+41946,Petroleum coke
+41948,Coal
+41949,Bituminous coal
+41950,Subbituminous coal
+41951,Lignite coal
+41952,Petroleum liquids
+41953,Petroleum coke
+41955,Coal
+41956,Bituminous coal
+41957,Subbituminous coal
+41959,Petroleum liquids
+41960,Petroleum coke
+41962,Coal
+41963,Bituminous coal
+41964,Subbituminous coal
+41966,Petroleum liquids
+41967,Petroleum coke
+41973,Petroleum liquids
+41976,Coal
+41977,Bituminous coal
+41978,Subbituminous coal
+41980,Petroleum liquids
+41981,Petroleum coke
+41983,Coal
+41984,Bituminous coal
+41985,Subbituminous coal
+41986,Lignite coal
+41987,Petroleum liquids
+41988,Petroleum coke
+41990,Coal
+41991,Bituminous coal
+41992,Subbituminous coal
+41993,Lignite coal
+41994,Petroleum liquids
+41995,Petroleum coke
+41997,Coal
+41998,Bituminous coal
+41999,Subbituminous coal
+42000,Lignite coal
+42001,Petroleum liquids
+42002,Petroleum coke
+42081,Coal
+42082,Bituminous coal
+42083,Subbituminous coal
+42084,Lignite coal
+42086,Petroleum coke
+42088,Coal
+42089,Bituminous coal
+42090,Subbituminous coal
+42091,Lignite coal
+42093,Petroleum coke
+42095,Coal
+42096,Bituminous coal
+42097,Subbituminous coal
+42098,Lignite coal
+42100,Petroleum coke
+42102,Coal
+42103,Bituminous coal
+42104,Subbituminous coal
+42105,Lignite coal
+42107,Petroleum coke
+42109,Coal
+42110,Bituminous coal
+42111,Subbituminous coal
+42114,Petroleum coke
+42116,Coal
+42117,Bituminous coal
+42118,Subbituminous coal
+42121,Petroleum coke
+42130,Coal
+42131,Bituminous coal
+42132,Subbituminous coal
+42135,Petroleum coke
+42137,Coal
+42138,Bituminous coal
+42139,Subbituminous coal
+42140,Lignite coal
+42142,Petroleum coke
+42144,Coal
+42145,Bituminous coal
+42146,Subbituminous coal
+42147,Lignite coal
+42149,Petroleum coke
+42151,Coal
+42152,Bituminous coal
+42153,Subbituminous coal
+42154,Lignite coal
+42156,Petroleum coke

@@ -3,13 +3,14 @@
 {% load crispy_forms_tags %}
 
 {% block heading %}
-    <h3><span class="fa fa-th"></span> Select Categories</h3>
+    <h2><span class="fa fa-th"></span> Electricity</h2>
 {% endblock %}
 
 {% block content %}
 {% if category_list %}  
+      
 <div class="row">
-    <div class="tree col-lg-4">
+    <div class="tree col-lg-4 hidden">
         {% regroup category_list by category1__name as cat_list1 %}
         {% regroup category_list by category2__name as cat_list2 %}
         {% regroup category_list by category3__name as cat_list3 %}
@@ -17,16 +18,21 @@
         {% regroup category_list by category5__name as cat_list5 %}
 
     {% for cat1 in cat_list1 %}
-        <ul><li><span><i class="icon-tags"></i> {{ cat1.grouper }}</span>
-
+        <ul><li><span><i class="icon-plus-sign"></i> {{ cat1.grouper }}</span>
                 {% for cat2 in cat_list2 %}
                     {% if cat1.grouper == cat2.list.0.category1__name and cat2.grouper  %}
-                        <ul><li><span class="badge badge-info "><i class="icon-minus-sign"></i> {{ cat2.grouper }}</span>  
+                        {% if cat2.list.0.category3 %}
+                            <ul><li><span class="badge"><i class="icon-plus-sign"></i> {{ cat2.grouper }}</span>
+                        {% else %}
+                            <ul><li> 
+                            <button type="button" value ="{{ cat2.list.0.series_id }}" class="select btn btn-info " role="button" >
+                                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat2.grouper }}</button>
+                        {% endif %} 
 
                         {% for cat3 in cat_list3 %} 
-                            {% if cat2.grouper == cat3.list.0.category2__name and cat3.grouper  %}
+                            {% if cat2.grouper == cat3.list.0.category2__name and cat1.grouper == cat3.list.0.category1__name and cat3.grouper  %}
                                 {% if cat3.list.0.category4 %}
-                                    <ul><li><span class="badge"><i class="icon-minus-sign"></i> {{ cat3.grouper }}</span>
+                                    <ul><li><span class="badge"><i class="icon-plus-sign"></i> {{cat3.grouper}}</span>
                                 {% else %}
                                     <ul><li> 
                                     <button type="button" value ="{{ cat3.list.0.series_id }}" class="select btn btn-info " role="button" >
@@ -34,18 +40,18 @@
                                 {% endif %}
 
                                 {% for cat4 in cat_list4 %} 
-                                    {% if cat3.grouper == cat4.list.0.category3__name and cat4.grouper  %}
+                                    {% if cat1.grouper == cat4.list.0.category1__name and cat2.grouper == cat4.list.0.category2__name and cat3.grouper == cat4.list.0.category3__name and cat4.grouper  %}
                                         {% if cat4.list.0.category5 %}
-                                            <ul><li><span class="badge badge-Success"><i class="icon-minus-sign"></i> {{ cat4.grouper }}</span>
+                                            <ul><li><span class="badge badge-Success"><i class="icon-plus-sign"></i> {{ cat4.grouper }}</span>
                                         {% else %}
                                             <ul><li>
                                             <button type="button" value ="{{ cat4.list.0.series_id }}" class="select btn btn-info " role="button" ><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat4.grouper }}</button>
                                         {% endif %}
 
                                         {% for cat5 in cat_list5 %} 
-                                            {% if cat4.grouper == cat5.list.0.category4__name and cat5.grouper  %}
+                                            {% if cat1.grouper == cat5.list.0.category1__name and cat2.grouper == cat5.list.0.category2__name and cat3.grouper == cat5.list.0.category3__name and cat4.grouper == cat5.list.0.category4__name and cat5.grouper  %}
                                                 {% if cat5.list.0.category6 %}
-                                                    <ul><li><span class="badge badge-Warning"><i class="icon-minus-sign"></i> {{ cat5.grouper }}</span>
+                                                    <ul><li><span class="badge badge-Warning"><i class="icon-plus-sign"></i> {{ cat5.grouper }}</span>
                                                 {% else %}
                                                     <ul><li>
                                                     <button type="button" value ="{{ cat5.list.0.series_id }}" class="select btn btn-info " role="button" ><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{ cat5.grouper }}</button>
@@ -67,10 +73,10 @@
     {% endfor %}
     </div> 
     <div class="col-lg-8 graphs" >
+        <span class="initComment"><i class="icon-arrow-left"></i>  Please select the category and graphs. </span>        
     </div>
     <div class="placeholder" style="height: 200px; "></div>
 </div>
-       
 {% else %}
     <p>No categories are available.</p>
 {% endif %}
@@ -79,20 +85,28 @@
 {% block extrajs %}
 <script type="text/javascript">
 $(document).ready(function() {
+    function init(){
+        //all elements are collapsed
+        $('div.tree').find('.parent_li').find('li').hide('fast')
+        $('div.tree').removeClass('hidden') //show tree
+    }
     $(".select").click(function(){
         var val = $(this).attr("value")
         pcontainer = $( ".graphs")
-        embed = "<div class=\"embed-responsive embed-responsive-4by3 \" name=\"Series_id\"><iframe class=\"embed-responsive-item\" src=\"{% url 'graphs:detail' 'Series_id' %}\"  scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe></div>"
+        embed = "<div class=\"embed-responsive embed-responsive-16by9 \" name=\"Series_id\"><iframe class=\"embed-responsive-item\" src=\"{% url 'graphs:detail' 'Series_id' %}\"  scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" style=\"border:none;\"></iframe></div>"
         embed = embed.replace(/Series_id/gi, val)
         //alert(embed)
         pcontainer.prepend(embed) //add widget to the top
+        $(".initComment").remove(); //remove comment 'please select...'
 
         val_with_escape = val.replace(/\./gi, '\\\\.') //replace 'AA.BB'->'AA\\.BB'
         if($(this).hasClass('btn-info')){
             $(this).removeClass("btn-info").addClass("btn-success")
+            $(this).parent('li').append("<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\" style=\"border: none\"></span>")
         }else{
             $(this).removeClass("btn-success").addClass("btn-info")
             $("div[name='"+val+"']").remove();
+            $(this).siblings('span').remove();
         }
     })
     //bootstrap-tree start
@@ -111,10 +125,8 @@ $(document).ready(function() {
         e.stopPropagation();
     });
     //bootstrap-tree end
+    init();
 
-    //init - all elements are collapsed
-    $('div.tree').find('.parent_li').find('li').hide('fast')
-    $('div.tree').find('i.icon-minus-sign').addClass('icon-plus-sign').removeClass('icon-minus-sign');
 
 })
 </script>

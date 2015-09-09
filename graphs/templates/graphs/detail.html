@@ -6,11 +6,13 @@
         .jvectormap-zoomout {
             left: 30px;
         }.jvectormap-zoomout, .jvectormap-zoomin {
-            top: 0px;
+            top: 20px;
             width: 15px;
             height: 15px;
         }.page-header {
-            margin-bottom: 5px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            padding-bottom: 3px;
         }body > .container{
             padding-top: 10px;
         }
@@ -18,16 +20,29 @@
 {% endblock %}
 
 {% block heading %}
-    <h4><span class="glyphicon glyphicon-stats"></span> 
-        {{object.category1}} - {{object.category2}} - {{object.category3}}</h4>
+    <h4><span class="glyphicon glyphicon-stats"></span>
+        {% if object.category1 %}
+            {{object.category1}}
+            {% if object.category2 %}
+                <span><i class="icon-chevron-right"></i> {{object.category2}}</span>
+                {% if object.category3 %}
+                    <span><i class="icon-chevron-right"></i> {{object.category3}}</span>
+                    {% if object.category4 %}
+                        <span><i class="icon-chevron-right"></i> {{object.category4}}</span>
+                        {% if object.category5 %}
+                            <span><i class="icon-chevron-right"></i> {{object.category5}}</span>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </h4>
 {% endblock %}
 
 {% block content %}
-<!-- <div class="eia-visualization" series_ids="PET.RWTC.D" style="width: 900px; height: 500px"></div> -->
 <div class="container">
-    <div class="eia-visualization" map="us_merc_en" initial_regions="" geoset_id="{{ object.geoset_id }}" relation_mode="line" style="width: 100%; height: 370px"></div>
-    <p>Series_id:{{ object.series_id }}</br>
-    Getset_id:{{ object.geoset_id }}</p>
+    <div class="eia-visualization" map="us_merc_en" initial_regions="" geoset_id="{{ object.geoset_id }}" relation_mode="line" style="width: 100%; height: 330px"></div>
+    <p> Getset_id:{{ object.geoset_id }}</p>
 
 </div>
 

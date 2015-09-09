@@ -4,8 +4,12 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.db.models import Min
+from django.views.generic import TemplateView
 
 from .models import Category, Graph, Scategory, States
+
+class HomePageView(TemplateView):
+    template_name = 'home.html'
 
 class IndexView(generic.ListView):
     template_name = 'graphs/index.html'
@@ -14,6 +18,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         #Return the categories."""
         #return Scategory.objects.order_by('series_id')
+        
         return Scategory.objects.values("category1__name",
             "category2__name",
             "category3__name",
