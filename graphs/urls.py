@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view(), name='home'),
     url(r'^index/$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<pk>.*)/$', views.DetailView.as_view(), name='detail'),
-    url(r'^(?P<category_id>.*)/vote/$', views.vote, name='vote'),
+    url(r'^(?P<pk>[A-Z]+.*)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^credits/$', views.CreditsView.as_view(), name='credits'),
+    #url(r'^(?P<category_id>.*)/vote/$', views.vote, name='vote'),
 ]

@@ -74,3 +74,6 @@ def vote(request, category_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('graphs:detail', args=(p.id,)))
+
+class CreditsView(TemplateView):
+    template_name = 'graphs/credits.html'
