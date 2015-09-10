@@ -1,31 +1,20 @@
 from django.contrib import admin
 
-from .models import Category, Graph, Scategory, MetaCategory
+from .models import Scategory, MetaCategory
 
 #collapse
-class GraphInline(admin.TabularInline):
-    model = Graph
-    extra = 3
-
-class CategoryAdmin(admin.ModelAdmin):
+class ScategoryAdmin(admin.ModelAdmin):
     list_display = [
-        'id',
-        'name',
+        'series_id',
+        str('category1_id'),
+        str('category2_id')
     ]
-    inlines = [GraphInline]
 
-class GraphAdmin(admin.ModelAdmin):
+class MetaCategoryAdmin(admin.ModelAdmin):
     list_display = [
-        'graph_id',
-        'category',
-        'seriesid',
-        'geosetid',
-        'geomapping',
-        'votes' ,
-        'notes' ,
+        'category_id',
+        'name'
     ]    
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Graph, GraphAdmin)
-admin.site.register(Scategory)
-admin.site.register(MetaCategory)
+admin.site.register(Scategory, ScategoryAdmin)
+admin.site.register(MetaCategory, MetaCategoryAdmin)

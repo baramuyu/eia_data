@@ -6,7 +6,7 @@ from django.views import generic
 from django.db.models import Min
 from django.views.generic import TemplateView
 
-from .models import Category, Graph, Scategory, States
+from .models import Scategory
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -43,6 +43,7 @@ class DetailView(generic.DetailView):
     template_name = 'graphs/detail.html'
     model = Scategory
     #queryset = Scategory.objects.all()
+
 '''
 def index(request):
     category_list = Category.objects.order_by('name')
@@ -56,7 +57,7 @@ def detail(request, category_id):
 def results(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
     return render(request, 'graphs/results.html', {'category': category})
-'''
+
 def vote(request, category_id):
     p = get_object_or_404(Category, pk=category_id)
     try:
@@ -74,6 +75,5 @@ def vote(request, category_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('graphs:detail', args=(p.id,)))
+'''
 
-class CreditsView(TemplateView):
-    template_name = 'graphs/credits.html'

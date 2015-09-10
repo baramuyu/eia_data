@@ -1,23 +1,5 @@
 from django.db import models
 
-class Graph(models.Model):
-    graph_id = models.AutoField(primary_key=True)
-    category = models.ForeignKey('Category')
-    seriesid = models.CharField(unique=False, max_length=50)
-    geosetid = models.CharField(unique=False, max_length=50, null=False)
-    geomapping = models.BooleanField(default=False)
-    votes = models.IntegerField(default=0)
-    notes = models.TextField('Notes', null=False, blank=True, default='')
-
-    def __unicode__(self):
-        return str(self.seriesid)
-
-class Category(models.Model):
-    name = models.CharField(unique=True, max_length=255)
-
-    def __unicode__(self):
-        return self.name
-
 class Scategory(models.Model):
     series_id = models.CharField(primary_key=True, max_length=100)
     category1 = models.ForeignKey('MetaCategory', related_name='category1', null=True)
@@ -37,12 +19,6 @@ class Scategory(models.Model):
 class MetaCategory(models.Model):
     category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
-
-    def __unicode__(self):
-        return self.name
-
-class States(models.Model):
-    name = models.CharField(primary_key=True, max_length=2)
 
     def __unicode__(self):
         return self.name
