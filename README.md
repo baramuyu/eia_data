@@ -2,15 +2,27 @@
 
 Shows multiple maps and charts, sourced from the U.S. Energy information Administration (EIA). It enables users to compare between different categories and find interesting details.
 
-This App currently covering only parts of Electricity section of their API.
-
 ## How this App works
 
-### 1. API and widget by EIA
-EIA is offering open data through [their API.](http://www.eia.gov/beta/api/index.cfm)
+### 1. API and widgets by EIA
+EIA offers open data with these categories through [their API.](http://www.eia.gov/beta/api/index.cfm)
+This App currently covering only parts of Electricity section.
+
+ * Electricity
+ * State Energy Data System (SEDS)
+ * Petroleum
+ * Natural Gas
+ * Total Energy
+ * Coal
+ * Short-Term Energy Outlook
+ * Annual Energy Outlook
+ * Crude Oil Imports
+ * International Energy Data
+
+
 
 #### API Category Query 
-Category Query is a tree structure, and App requests with parent category_id and the query returns child category_ids.
+The Category Query is a tree structure, and App requests with parent category_id and the query returns child category_ids.
 
  * [API Documentation](http://www.eia.gov/beta/api/commands.cfm)
  * [Query Browser](http://www.eia.gov/beta/api/qb.cfm)
@@ -38,13 +50,13 @@ Sample Data of API Category Query
 ```
     
 #### EIA Widgets
-By putting this code inside HTML, their widget imports graphs and charts. What we have to do is only define Geoset_id.
+By putting this code inside HTML, their widget imports graphs and charts automatically. What we have to do to get charts and maps is only define Geoset_id.
     
 ```html
     <div class="eia-visualization" map="us_merc_en" initial_regions="" geoset_id="ELEC.CONS_TOT.NG-96.M" relation_mode="line" style="width: 915px; height: 500px"></div>
 ```
     
-[Widget example](http://www.eia.gov/beta/api/embed.cfm?type=map&geoset_id=ELEC.CONS_TOT.NG-96.M&tracking_regions=USA-AZ)
+ * [Widget example](http://www.eia.gov/beta/api/embed.cfm?type=map&geoset_id=ELEC.CONS_TOT.NG-96.M&tracking_regions=USA-AZ)
 
 <p align="center">
     <img src="img/map_widget.jpg" width="500"/>
@@ -52,14 +64,15 @@ By putting this code inside HTML, their widget imports graphs and charts. What w
 
 
 ### 2. Structure
-    
+To load tree menu smoothly, it stores category data to the database in advance. Then Django framework load the data from database to show tree menu.
+
 ```
     [EIA API]
         |
         | < Get category data and update DB by getcategory.py
         | < Extract Getset_id
         |
-    [SQLite]
+    [Database(SQLite)]
         |
         | < load category data and Getset_id  
         |
@@ -71,31 +84,24 @@ By putting this code inside HTML, their widget imports graphs and charts. What w
 ```
 
 ### 3. Get category data
-To update hierarchical category data on database, the program flatten the data as bellow.
+To update hierarchical category data on the database, it flatten the category data as bellow.
 
- * API Query #1     
+API Query Example
 
-```    
-Parent: Category_A
-Child: Category_B, Category_C
-```
+> * API Query #1     
+>Parent: Category_A</br>
+>Child: Category_B, Category_C
 
- * API Query #2           
+> * API Query #2           
+>Parent: Category_B</br>
+>Child: Category_E, Category_F
 
-```
-Parent: Category_B
-Child: Category_E, Category_F
-```
+> * API Query #3           
+>Parent: Category_E</br>
+>Child: Category_H</br>
+>Child_Series_id: ELEC.SALES.ALL.A <- original of Getset_id  
 
- * API Query #3           
-
-```
-Parent: Category_E
-Child: Category_H
-Child_Series_id: ELEC.SALES.ALL.A <- original of Getset_id  
-```
-
------
+##### After flattened
 Scategory Table:
 
 | Series_id  | Child1 | Child2 | Child3 | Child4 |
@@ -118,12 +124,13 @@ There is no API query for getting 'Geoset_id'. It extracts 'Geoset_id' from 'Ser
 
 | Series_id  | Geoset_id |
 | ------------- | ------------- | 
-|ELEC.CONS_TOT.COW-AL-99.A | ELEC.CONS_TOT.COW-99.A
-|ELEC.REV.AK-ALL.Q| ELEC.REV.ALL.Q|
+|ELEC.CONS_TOT.COW-**AL**-99.A | ELEC.CONS_TOT.COW-99.A
+|ELEC.REV.**AK**-ALL.Q| ELEC.REV.ALL.Q|
 
-To remove "XX-"... 
+"AL-" and "AK-" defines the states as filter.
+To get 'Geoset_id', it removes the states filter, "XX-" from 'Series_id'.
 
-This code gets 'Series_id', replace it by Regex, and update to 'Geoset_id'.
+This code gets 'Series_id' from database, replace "XX-" by Regex, and update to 'Geoset_id'.
 ```python
     sql = 'SELECT series_id, geoset_id FROM graphs_scategory'
     keys = [];
@@ -154,10 +161,6 @@ class Scategory(models.Model):
     category3 = models.ForeignKey('MetaCategory', related_name='category3', null=True)
     category4 = models.ForeignKey('MetaCategory', related_name='category4', null=True)
     category5 = models.ForeignKey('MetaCategory', related_name='category5', null=True)
-    category6 = models.ForeignKey('MetaCategory', related_name='category6', null=True)
-    category7 = models.ForeignKey('MetaCategory', related_name='category7', null=True)
-    category8 = models.ForeignKey('MetaCategory', related_name='category8', null=True)
-    category9 = models.ForeignKey('MetaCategory', related_name='category9', null=True)
     geoset_id = models.CharField(max_length=100, null=True)
 
     def __unicode__(self):
@@ -215,17 +218,20 @@ class DetailView(generic.DetailView):
 
 ### 6. Navigation
 
-There was prototype made by vertical buttons with bootstrap. 
+There was the prototype made by vertical buttons with bootstrap.
+
 <p align="center">
     <img src="img/proto.jpg" width="500"/>
 </p>
 
-However, it doesn't have a operational feeling, then I re-built it based on [Bootstrap-Themed Tree Widget](http://jhfrench.github.io/bootstrap-tree/docs/example.html)
+However, it didn't have a good operational feeling, so I re-built it based on [Bootstrap-Themed Tree Widget](http://jhfrench.github.io/bootstrap-tree/docs/example.html)
+
 <p align="center">
     <img src="img/slide1.JPG" width="300"/>
 </p>
 
 ### 7. Loading widget
-[EIA Widget](http://www.eia.gov/beta/api/embed.cfm?type=map&geoset_id=ELEC.CONS_TOT.NG-96.M&tracking_regions=USA-AZ) is building maps and charts with [Highcharts](http://www.highcharts.com/).
+
+Maps and Charts in [EIA Widget](http://www.eia.gov/beta/api/embed.cfm?type=map&geoset_id=ELEC.CONS_TOT.NG-96.M&tracking_regions=USA-AZ) build by [Highcharts.com](http://www.highcharts.com/).
 
 I edited "EIA_grapher.js" comes with EIA widgets for adjusting the size of the map and title to fit them in the page.
