@@ -75,30 +75,35 @@ To update hierarchical category data on database, the program flatten the data a
 
  * API Query #1     
 
-     
-    Parent: Category_A
-    Child: Category_B, Category_C
+```    
+Parent: Category_A
+Child: Category_B, Category_C
+```
 
  * API Query #2           
 
-
-    Parent: Category_B
-    Child: Category_E, Category_F
+```
+Parent: Category_B
+Child: Category_E, Category_F
+```
 
  * API Query #3           
 
-
-    Parent: Category_E
-    Child: Category_H
-    Child_Series_id: ELEC.SALES.ALL.A <- original of Getset_id  
+```
+Parent: Category_E
+Child: Category_H
+Child_Series_id: ELEC.SALES.ALL.A <- original of Getset_id  
+```
 
 -----
 Scategory Table:
+
 | Series_id  | Child1 | Child2 | Child3 | Child4 |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------ |
 | ELEC.SALES.ALL.A  | Category_A  | Category_B   | Category_E   | Category_H
 
 MetaCategory Table:
+
 | Category_id  | name |
 | ------------- | ------------- | 
 | Category_A  | Electricity |
@@ -214,9 +219,10 @@ There was prototype made by vertical buttons with bootstrap.
 <p align="center">
     <img src="img/proto.jpg" width="500"/>
 </p>
+
 However, it doesn't have a operational feeling, then I re-built it based on [Bootstrap-Themed Tree Widget](http://jhfrench.github.io/bootstrap-tree/docs/example.html)
 <p align="center">
-    <img src="img/slide1.jpg" width="300"/>
+    <img src="img/slide1.JPG" width="300"/>
 </p>
 
 ### 7. Loading widget
