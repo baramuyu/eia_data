@@ -156,7 +156,7 @@ def update_geoset_id():
     for row in c.execute(sql):
         keys.append(row);
     #create geoset_id
-    p = re.compile("[A-Z]*-([0-9A-Z]*\.)[A|M|Q]")
+    p = re.compile("[A-Z]+-([0-9A-Z]+\.)[AMQ]$")
     #original - ELEC.SALES.AL-ALL.Q
     #getset_id- ELEC.SALES.ALL.Q
     for key in keys:

@@ -137,7 +137,7 @@ This code gets 'Series_id' from database, replace "XX-" by Regex, and update to 
     for row in c.execute(sql):
         keys.append(row);
     #create geoset_id
-    p = re.compile("[A-Z]*-([0-9A-Z]*\.)[A|M|Q]")
+    p = re.compile("[A-Z]+-([0-9A-Z]+\.)[AMQ]$")
     for key in keys:
         sql=('UPDATE graphs_scategory SET geoset_id = ?'
          + 'WHERE series_id = ?')
@@ -182,7 +182,7 @@ class MetaCategory(models.Model):
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view(), name='home'),
     url(r'^index/$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<pk>[A-Z]+.*)/$', views.DetailView.as_view(), name='detail')
+    url(r'^(?P<pk>[^/]+)/$', views.DetailView.as_view(), name='detail')
 ]
 ```
 
